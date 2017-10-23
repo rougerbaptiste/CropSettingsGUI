@@ -20,6 +20,10 @@ colPower = 1
 migrNbCluster = 2
 migrPower = 1
 
+launcherFileName = "launcher"
+
+launchFileString = "executable = cropmetapop\noutput=" + folder + ".out\nerror="\
+        + folder + ".err\nlog=" + folder + ".log\n\n"
 paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
         "init_size:", "nb_pop:", "carr_capacity:", "nb_marker:", "nb_allele:",\
         "init_AlleleFrequency_equal:", "fecundity:", "percentSelf:", "mut_rate:",\
@@ -59,4 +63,10 @@ with open(expPlanFileName) as csvfile:
         fileNameToWrite = "_".join(list(map(str, list(parameters))))
         fileToWrite = open(fileNameToWrite, "w")
         fileToWrite.write(stringToFile)
+        fileToWrite.close()
 
+        launchFileString = launchFileString + "initialdir = " + fileNameToWrite + "\nqueue\n\n"
+
+launcherFile = open(launcherFileName, "w")
+launcherFile.write(launchFileString)
+launcherFile.close()
