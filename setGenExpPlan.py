@@ -15,6 +15,10 @@ nbMarker = 100
 nbAllele = 5
 iniAllFreqEq = 0.2
 fecundity = 2
+colNbCluster = 2
+colPower = 1
+migrNbCluster = 2
+migrPower = 1
 
 paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
         "init_size:", "nb_pop:", "carr_capacity:", "nb_marker:", "nb_allele:",\
@@ -41,6 +45,16 @@ with open(expPlanFileName) as csvfile:
         stringToFile = ""
         for paramIndex, paramVal in enumerate(parameters):
             stringToFile = stringToFile + paramNames[paramIndex] + str(paramVal) + "\n"
+            # if the colonisation network requires an additionnal parameter
+            if paramIndex == 16 and paramVal == 5:
+                stringToFile = stringToFile + "col_nb_cluster:" + str(colNbCluster) + "\n"
+            elif paramIndex == 16 and paramVal == 6:
+                stringToFile = stringToFile + "col_power:" + str(colPower) + "\n"
+            # if the migration network requires an additionnal parameter
+            elif paramIndex == 22 and paramVal == 5:
+                stringToFile = stringToFile + "migr_nb_cluster:" + str(migrNbCluster) + "\n"
+            elif paramIndex == 22 and paramVal == 6:
+                stringToFile = stringToFile + "migr_power:" + str(migrPower) + "\n"
 
         fileNameToWrite = "_".join(list(map(str, list(parameters))))
         fileToWrite = open(fileNameToWrite, "w")
