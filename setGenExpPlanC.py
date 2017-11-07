@@ -3,7 +3,7 @@
 import csv
 from itertools import repeat
 
-folder = "test"
+folder = "expC"
 expPlanFileName = "MyData.csv"
 
 generations = 30
