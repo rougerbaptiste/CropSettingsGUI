@@ -65,7 +65,7 @@ with open(expPlanFileName) as csvfile:
                 stringToFile = stringToFile + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
 
         stringToFile += "outputs:{genotype}"
-        fileNameToWrite = folder + '_'.join(row)
+        fileNameToWrite = folder + '_'.join(row) + ".set"
         
         fileToWrite = open(fileNameToWrite, "w")
         fileToWrite.write(stringToFile)
