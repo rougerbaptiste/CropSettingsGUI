@@ -59,7 +59,10 @@ with open(expPlanFileName) as csvfile:
 
         stringToFile = ""
         for paramIndex, paramValue in enumerate(parameters):
-            stringToFile = stringToFile + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
+            if paramIndex == 12 and parameters[paramIndex]=="0":
+                stringToFile += "#" + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
+            else:
+                stringToFile = stringToFile + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
 
         stringToFile += "outputs:{genotype}"
         fileNameToWrite = folder + '_'.join(row)
