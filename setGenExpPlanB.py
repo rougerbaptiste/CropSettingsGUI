@@ -21,7 +21,7 @@ launcherFileName = "launcher"
 
 launcherFileCrop = "Universe=vanilla\nExecutable=usr/bin/python3\nshould_transfer_files=no\ninput=/dev/null\noutput=condor.out\nerror=condor.error\nlog=condor.log\nrequirements=( HAS_ASREML =?= False )\n#request_memory=8G\ngetenv=true\n"
 
-launcherFileR = "Universe=vanilla\nExecutable=usr/bin/R\nshould_transfer_files=no\ninput=/dev/null\noutput=condor.out\nerror=condor.error\nlog=condor.log\nrequirements=( HAS_ASREML =?= False )\n#request_memory=8G\ngetenv=true\n"
+launcherFileR = "Universe=vanilla\nExecutable=usr/bin/Rscript\nshould_transfer_files=no\ninput=/dev/null\noutput=condor.out\nerror=condor.error\nlog=condor.log\nrequirements=( HAS_ASREML =?= False )\n#request_memory=8G\ngetenv=true\n"
 
 all1s = '{' + ','.join(str(e) for e in list(repeat(1,nbPop))) + '}'
 tempHalf = list(repeat(0,nbPopHalf)) + list(repeat(1,nbPopHalf))
@@ -79,7 +79,7 @@ with open(expPlanFileName) as csvfile:
         fileToWrite.close()
 
         launcherFileCrop = launcherFileCrop + "\nArguments = /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + fileNameToWrite + "\nqueue\n\n"
-        launcherFileR = launcherFileR + "\nArguments = --no-save -f /home/deap/aknainojika/main_initialisation.R\nqueue\n\n"
+        launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/main_initialisation.R /home/deap/aknainojika/" + folder + '_'.join(row) + "\nqueue\n\n"
 launchFileCrop = open(launcherFileName, "w")
 launchFileCrop.write(launcherFileCrop)
 launchFileCrop.close()
