@@ -1,19 +1,29 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 %\usepackage[french]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{subcaption}
-\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage{graphicx}
+%\usepackage{subcaption}
+%\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+
+\title{Manual for generating settings and launcher files for \textsc{CropMetaPop}}
+\author{Baptiste \textsc{Rouger}}
 \begin{document}
+\maketitle
 \section{General purpose}
 These scripts are designed to create automatically settings files for the \textsc{CropMetaPop} simulation software in order to realize a sensibility analysis of its parameters.
 It creates a experiment plan to realize anova analysis of 2 factors
 
 
 \section{List of the files}
+\begin{itemize}
+        \item \textbf{expPlan.R} Script that generates the experiment plan
+        \item \textbf{setGenExpPlanA.py} Script that uses the experiment plan (5 parameters) for experiment A (drift + selection)
+        \item \textbf{setGenExpPlanB.py} Script that uses the experiment plan (9 parameters) for experiment B (drift + selection + colonisation)
+        \item \textbf{setGenExpPlanC.py} Script that uses the experiment plan (9 parameters) for experiment C (drift + selection + migration)
+    \end{itemize}
 
 
 \end{document}
