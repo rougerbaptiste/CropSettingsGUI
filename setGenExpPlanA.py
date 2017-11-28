@@ -21,7 +21,7 @@ launcherFileName = "launcher"
 
 launcherFileCrop = "Universe=vanilla\nExecutable=/usr/bin/python3\nshould_transfer_files=no\ninput=/dev/null\noutput=condor.out\nerror=condor.error\nlog=condor.log\nrequirements=( HAS_ASREML =?= False )\nrequest_memory=12G\ngetenv=true\n"
 
-launcherFileR = "Universe=vanilla\nExecutable=usr/bin/Rscript\nshould_transfer_files=no\ninput=/dev/null\noutput=condor.out\nerror=condor.error\nlog=condor.log\nrequirements=( HAS_ASREML =?= False )\nrequest_memory=12G\ngetenv=true\n"
+launcherFileR = "Universe=vanilla\nExecutable=usr/bin/python3\nshould_transfer_files=no\ninput=/dev/null\noutput=condor.out\nerror=condor.error\nlog=condor.log\nrequirements=( HAS_ASREML =?= False )\nrequest_memory=12G\ngetenv=true\n"
 
 all1s = '{' + ','.join(str(e) for e in list(repeat(1,nbPop))) + '}'
 tempHalf = list(repeat(0,nbPopHalf)) + list(repeat(1,nbPopHalf))
@@ -33,7 +33,7 @@ paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
         "fecundity:", "carr_capacity:",\
         "percentSelf:", "mut_rate:", "nb_marker:", "fitness_equal:", "optimum:"]
 
-paramMatrix = [[10,100,1000], [0,0.5,0.95],[0.001,0.01,0.1], ["0","fit1.csv","fit10.csv"],\
+paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.001, 0.01, 0.1], ["0", "fit1.csv", "fit10.csv"],\
         [all1s, half1, continuous]]
 
 with open(expPlanFileName) as csvfile:
@@ -46,11 +46,11 @@ with open(expPlanFileName) as csvfile:
                 nbMarker = 10
                 parameters.append(nbMarker)
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
-            elif paramNb==3 and indices == '2':
+            elif paramNb == 3 and indices == '2':
                 nbMarker = 11
                 parameters.append(nbMarker)
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
-            elif paramNb==3 and indices == '3':
+            elif paramNb == 3 and indices == '3':
                 nbMarker = 20
                 parameters.append(nbMarker)
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
@@ -59,20 +59,20 @@ with open(expPlanFileName) as csvfile:
 
         stringToFile = ""
         for paramIndex, paramValue in enumerate(parameters):
-            if paramIndex == 12 and parameters[paramIndex]=="0":
+            if paramIndex == 12 and parameters[paramIndex] == "0":
                 stringToFile += "#" + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
             else:
                 stringToFile = stringToFile + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
 
-        stringToFile += "outputs:{genotype}"
+        stringToFile += "#outputs:{genotype}"
         fileNameToWrite = folder + '_'.join(row) + ".set"
-        
+
         fileToWrite = open(fileNameToWrite, "w")
         fileToWrite.write(stringToFile)
         fileToWrite.close()
 
         launcherFileCrop = launcherFileCrop + "\nArguments = /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + fileNameToWrite + "\nqueue\n\n"
-        launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/main_initialisation.R /home/deap/aknainojika/" + folder + '_'.join(row) + "\nqueue\n\n"
+        launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/newAnalysis.py /home/deap/aknainojika/" + folder + '_'.join(row) + " " + replicate + " " + nbPop + " " + nbMarker + " " + nbAllele + "\nqueue\n\n"
 launchFileCrop = open(launcherFileName, "w")
 launchFileCrop.write(launcherFileCrop)
 launchFileCrop.close()
