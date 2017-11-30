@@ -1,6 +1,6 @@
 rm(list=ls())
 library(planor)
-K=9 # nombre de paramètres
+K=5 # nombre de paramètres
 m=3 # nombre de niveau
 
 binf = 1+K*(m-1)+K*(K-1)/2*(m-1)^2 # calcul de la borne inférieure, ie nb minimum de simulations
