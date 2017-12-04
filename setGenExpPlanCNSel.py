@@ -3,7 +3,7 @@
 import csv
 from itertools import repeat
 
-folder = "expBNSel"
+folder = "expCNSel"
 expPlanFileName = "MyData.csv"
 
 generations = 30
@@ -32,12 +32,12 @@ paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
         "init_size:", "nb_pop:", "nb_allele:",\
         "fecundity:", "carr_capacity:",\
         "percentSelf:", "mut_rate:", "nb_marker:", "fitness_equal:", "optimum:",\
-        "col_network:", "col_rate:", "col_nb_edge:", "ext_rate:"]
+        "migr_network:", "migr_rate:", "migr_nb_edge:", "migr_replace:"]
 
 paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.001, 0.01, 0.1], ["0", "fit1.csv", "fit10.csv"],\
         [all1s, half1, continuous], [4, 5, 6], [0, 0.01, 0.1],\
         [int((nbPop*(nbPop-1))*0.05), int((nbPop*(nbPop-1))*0.5), int(nbPop*(nbPop-1))],\
-        [0, 0.01, 0.1]]
+        [0.05, 0.2, 0.5]]
 
 with open(expPlanFileName) as csvfile:
     reader = csv.reader(csvfile, delimiter=",")

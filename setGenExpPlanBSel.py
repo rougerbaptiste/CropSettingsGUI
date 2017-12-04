@@ -44,7 +44,7 @@ with open(expPlanFileName) as csvfile:
     for row in reader:
         parameters = [folder+ '_'.join(row), generations, replicate, foldertime, initSize,\
                 nbPop, nbAllele, fecundity]
-        subrow1 = [row[i] for i in range(0,5)]
+        subrow1 = [row[i] for i in range(0, 5)]
         for paramNb, indices in enumerate(subrow1):
             if paramNb == 3 and indices == '1':
                 nbMarker = 10
@@ -60,7 +60,7 @@ with open(expPlanFileName) as csvfile:
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
             else:
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
-        subrow2 = [row[i] for i in range(5,9)]
+        subrow2 = [row[i] for i in range(5, 9)]
         for paramNb, indices in enumerate(subrow2):
             parameters.append(paramMatrix[paramNb+5][int(indices)-1])
 
@@ -69,7 +69,8 @@ with open(expPlanFileName) as csvfile:
             if paramIndex == 12 and parameters[paramIndex] == "0":
                 stringToFile += "#" + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
             else:
-                stringToFile = stringToFile + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
+                stringToFile = stringToFile + paramNames[paramIndex] + \
+                str(parameters[paramIndex]) + "\n"
 
         stringToFile += "#outputs:{genotype}"
         fileNameToWrite = folder + "_" + '_'.join(row) + ".set"
@@ -78,7 +79,9 @@ with open(expPlanFileName) as csvfile:
         fileToWrite.write(stringToFile)
         fileToWrite.close()
 
-        launcherFileCrop = launcherFileCrop + "\nArguments = /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + fileNameToWrite + "\nqueue\n\n"
+        launcherFileCrop = launcherFileCrop + "\nArguments = \
+                /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + \
+                fileNameToWrite + "\nqueue\n\n"
         launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + " " + str(replicate) + " " + str(nbPop) + " " + str(nbMarker) + " " + str(nbAllele) + "\nqueue\n\n"
 launchFileCrop = open(launcherFileName + "Sel", "w")
 launchFileCrop.write(launcherFileCrop)
