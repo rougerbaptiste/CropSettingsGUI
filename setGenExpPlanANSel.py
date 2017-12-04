@@ -11,7 +11,7 @@ replicate = 10
 foldertime = 0
 initSize = 100
 nbPop = 100
-nbPopHalf= int(nbPop/2)
+nbPopHalf = int(nbPop/2)
 nbAllele = 2
 # iniAllFreqEq = 0.5
 fecundity = 2
@@ -23,10 +23,10 @@ launcherFileCrop = "Universe=vanilla\nExecutable=/usr/bin/python3\nshould_transf
 
 launcherFileR = "Universe=vanilla\nExecutable=/usr/bin/python3\nshould_transfer_files=no\ninput=/dev/null\noutput=condor.out\nerror=condor.error\nlog=condor.log\nrequirements=( HAS_ASREML =?= False )\nrequest_memory=1G\ngetenv=true\n"
 
-all1s = '{' + ','.join(str(e) for e in list(repeat(1,nbPop))) + '}'
-tempHalf = list(repeat(0,nbPopHalf)) + list(repeat(1,nbPopHalf))
+all1s = '{' + ','.join(str(e) for e in list(repeat(1, nbPop))) + '}'
+tempHalf = list(repeat(0, nbPopHalf)) + list(repeat(1, nbPopHalf))
 half1 = '{' + ','.join(str(e) for e in tempHalf) + '}'
-continuous = '{' + ','.join(str(int(e/nbPop)) for e in list(range(0,nbPop))) + '}'
+continuous = '{' + ','.join(str(int(e/nbPop)) for e in list(range(0, nbPop))) + '}'
 
 paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
         "init_size:", "nb_pop:", "nb_allele:",\
@@ -71,12 +71,14 @@ with open(expPlanFileName) as csvfile:
         fileToWrite.write(stringToFile)
         fileToWrite.close()
 
-        launcherFileCrop = launcherFileCrop + "\nArguments = /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + fileNameToWrite + "\nqueue\n\n"
+        launcherFileCrop = launcherFileCrop + "\nArguments = \
+                /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + \
+                fileNameToWrite + "\nqueue\n\n"
         launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisNSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + " " + str(replicate) + " " + str(nbPop) + " " + str(nbMarker) + " " + str(nbAllele) + "\nqueue\n\n"
 launchFileCrop = open(launcherFileName + "NSel", "w")
 launchFileCrop.write(launcherFileCrop)
 launchFileCrop.close()
 
-launchFileR = open(launcherFileName+"NSelPy", "w")
+launchFileR = open(launcherFileName + "NSelPy", "w")
 launchFileR.write(launcherFileR)
 launchFileR.close()

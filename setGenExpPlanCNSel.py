@@ -82,7 +82,7 @@ with open(expPlanFileName) as csvfile:
         launcherFileCrop = launcherFileCrop + "\nArguments = \
                 /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + \
                 fileNameToWrite + "\nqueue\n\n"
-        launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisNSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + "\nqueue\n\n"
+        launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisNSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + " " + str(replicate) + " " + str(nbPop) + " " + str(nbMarker) + " " + str(nbAllele) + "\nqueue\n\n"
 launchFileCrop = open(launcherFileName + "NSel", "w")
 launchFileCrop.write(launcherFileCrop)
 launchFileCrop.close()
