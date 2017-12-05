@@ -44,11 +44,11 @@ with open(expPlanFileName) as csvfile:
                 nbPop, nbAllele, fecundity]
         for paramNb, indices in enumerate(row):
             if paramNb == 3 and indices == '1':
-                nbMarker = 10
+                nbMarker = 11
                 parameters.append(nbMarker)
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
             elif paramNb == 3 and indices == '2':
-                nbMarker = 11
+                nbMarker = 15
                 parameters.append(nbMarker)
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
             elif paramNb == 3 and indices == '3':
@@ -63,7 +63,8 @@ with open(expPlanFileName) as csvfile:
             if paramIndex == 12 and parameters[paramIndex] == "0":
                 stringToFile += "#" + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
             else:
-                stringToFile = stringToFile + paramNames[paramIndex] + str(parameters[paramIndex]) + "\n"
+                stringToFile = stringToFile + paramNames[paramIndex] + \
+                str(parameters[paramIndex]) + "\n"
 
         stringToFile += "#outputs:{genotype}"
         fileNameToWrite = folder + "_" + '_'.join(row) + ".set"
@@ -72,12 +73,14 @@ with open(expPlanFileName) as csvfile:
         fileToWrite.write(stringToFile)
         fileToWrite.close()
 
-        launcherFileCrop = launcherFileCrop + "\nArguments = /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + fileNameToWrite + "\nqueue\n\n"
+        launcherFileCrop = launcherFileCrop + "\nArguments = \
+                /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + \
+                fileNameToWrite + "\nqueue\n\n"
         launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + " " + str(replicate) + " " + str(nbPop) + " " + str(nbMarker) + " " + str(nbAllele) + "\nqueue\n\n"
-launchFileCrop = open(launcherFileName + "Sel", "w")
+launchFileCrop = open(launcherFileName + "ASel", "w")
 launchFileCrop.write(launcherFileCrop)
 launchFileCrop.close()
 
-launchFileR = open(launcherFileName+"SelPy", "w")
+launchFileR = open(launcherFileName + "ASelPy", "w")
 launchFileR.write(launcherFileR)
 launchFileR.close()

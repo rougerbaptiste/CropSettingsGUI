@@ -47,11 +47,11 @@ with open(expPlanFileName) as csvfile:
         subrow1 = [row[i] for i in range(0, 5)]
         for paramNb, indices in enumerate(subrow1):
             if paramNb == 3 and indices == '1':
-                nbMarker = 10
+                nbMarker = 11
                 parameters.append(nbMarker)
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
             elif paramNb == 3 and indices == '2':
-                nbMarker = 11
+                nbMarker = 15
                 parameters.append(nbMarker)
                 parameters.append(paramMatrix[paramNb][int(indices)-1])
             elif paramNb == 3 and indices == '3':
@@ -83,10 +83,10 @@ with open(expPlanFileName) as csvfile:
                 /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + \
                 fileNameToWrite + "\nqueue\n\n"
         launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + " " + str(replicate) + " " + str(nbPop) + " " + str(nbMarker) + " " + str(nbAllele) + "\nqueue\n\n"
-launchFileCrop = open(launcherFileName + "Sel", "w")
+launchFileCrop = open(launcherFileName + "CSel", "w")
 launchFileCrop.write(launcherFileCrop)
 launchFileCrop.close()
 
-launchFileR = open(launcherFileName + "SelPy", "w")
+launchFileR = open(launcherFileName + "CSelPy", "w")
 launchFileR.write(launcherFileR)
 launchFileR.close()

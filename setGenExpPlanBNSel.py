@@ -83,10 +83,10 @@ with open(expPlanFileName) as csvfile:
                 /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + \
                 fileNameToWrite + "\nqueue\n\n"
         launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisNSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + "\nqueue\n\n"
-launchFileCrop = open(launcherFileName + "NSel", "w")
+launchFileCrop = open(launcherFileName + "BNSel", "w")
 launchFileCrop.write(launcherFileCrop)
 launchFileCrop.close()
 
-launchFileR = open(launcherFileName + "NSelPy", "w")
+launchFileR = open(launcherFileName + "BNSelPy", "w")
 launchFileR.write(launcherFileR)
 launchFileR.close()
