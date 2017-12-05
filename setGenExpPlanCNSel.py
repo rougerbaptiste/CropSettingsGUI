@@ -36,7 +36,7 @@ paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
 
 paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.001, 0.01, 0.1], ["0", "fit1.csv", "fit10.csv"],\
         [all1s, half1, continuous], [4, 5, 6], [0, 0.01, 0.1],\
-        [int((nbPop*(nbPop-1))*0.05), int((nbPop*(nbPop-1))*0.5), int(nbPop*(nbPop-1))],\
+        [int((nbPop*(nbPop-1))*0.05), int((nbPop*(nbPop-1))*0.25), int(nbPop*(nbPop-1)*0.5)],\
         [0.05, 0.2, 0.5]]
 
 with open(expPlanFileName) as csvfile:
