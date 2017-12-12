@@ -34,10 +34,10 @@ paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
         "percentSelf:", "mut_rate:", "nb_marker:", "fitness_equal:", "optimum:",\
         "col_network:", "col_rate:", "col_nb_edge:", "ext_rate:"]
 
-paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.001, 0.01, 0.1], ["0", "fit1.csv", "fit10.csv"],\
-        [all1s, half1, continuous], [4, 5, 6], [0, 0.01, 0.1],\
-        [int((nbPop*(nbPop-1))*0.05), int((nbPop*(nbPop-1))*0.25), int(nbPop*(nbPop-1)*0.5)],\
-        [0, 0.01, 0.1]]
+paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.00001, 0.0001, 0.001], ["0", "fit1.csv", "fit10.csv"],\
+        [all1s, half1, continuous], [4, 5, 6], [0.01, 0.05, 0.1],\
+        [int((nbPop*(nbPop-1))*0.04), int((nbPop*(nbPop-1))*0.08), int(nbPop*(nbPop-1)*0.12)],\
+        [0.01, 0.05, 0.1]]
 
 with open(expPlanFileName) as csvfile:
     reader = csv.reader(csvfile, delimiter=",")
@@ -82,7 +82,7 @@ with open(expPlanFileName) as csvfile:
         launcherFileCrop = launcherFileCrop + "\nArguments = \
                 /home/deap/aknainojika/cropmetapop/CropMetaPop.py /home/deap/aknainojika/" + \
                 fileNameToWrite + "\nqueue\n\n"
-        launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisNSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + "\nqueue\n\n"
+        launcherFileR = launcherFileR + "\nArguments = /home/deap/aknainojika/analysisNSel.py /home/deap/aknainojika/" + folder + '_'.join(row) + " " + str(replicate) + " " + str(nbPop) + " " + str(nbMarker) + " " + str(nbAllele) + "\nqueue\n\n"
 launchFileCrop = open(launcherFileName + "BNSel", "w")
 launchFileCrop.write(launcherFileCrop)
 launchFileCrop.close()

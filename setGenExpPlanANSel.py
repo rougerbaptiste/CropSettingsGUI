@@ -33,7 +33,7 @@ paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
         "fecundity:", "carr_capacity:",\
         "percentSelf:", "mut_rate:", "nb_marker:", "fitness_equal:", "optimum:"]
 
-paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.001, 0.01, 0.1], ["0", "fit1.csv", "fit10.csv"],\
+paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.00001, 0.0001, 0.001], ["0", "fit1.csv", "fit10.csv"],\
         [all1s, half1, continuous]]
 
 with open(expPlanFileName) as csvfile:

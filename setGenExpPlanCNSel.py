@@ -34,9 +34,9 @@ paramNames = ["folder:", "generations:", "replicates:", "folder_time:",\
         "percentSelf:", "mut_rate:", "nb_marker:", "fitness_equal:", "optimum:",\
         "migr_network:", "migr_rate:", "migr_nb_edge:", "migr_replace:"]
 
-paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.001, 0.01, 0.1], ["0", "fit1.csv", "fit10.csv"],\
-        [all1s, half1, continuous], [4, 5, 6], [0, 0.01, 0.1],\
-        [int((nbPop*(nbPop-1))*0.05), int((nbPop*(nbPop-1))*0.25), int(nbPop*(nbPop-1)*0.5)],\
+paramMatrix = [[10, 100, 1000], [0, 0.5, 0.95], [0.00001, 0.0001, 0.001], ["0", "fit1.csv", "fit10.csv"],\
+        [all1s, half1, continuous], [4, 5, 6], [0.01, 0.05, 0.1],\
+        [int((nbPop*(nbPop-1))*0.04), int((nbPop*(nbPop-1))*0.08), int(nbPop*(nbPop-1)*0.12)],\
         [0.05, 0.2, 0.5]]
 
 with open(expPlanFileName) as csvfile:
