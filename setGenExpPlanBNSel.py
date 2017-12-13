@@ -14,7 +14,7 @@ nbPop = 100
 nbPopHalf = int(nbPop/2)
 nbAllele = 2
 # iniAllFreqEq = 0.5
-fecundity = 2
+fecundity = 4
 
 launcherFileName = "launcher"
 
